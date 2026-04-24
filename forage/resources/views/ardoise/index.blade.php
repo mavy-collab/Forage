@@ -104,9 +104,9 @@
                 <th>Nom</th>
                 <th>Montant dû</th>
                 <th>Date</th>
-                @if($filtre === 'remboursees')<th>Remboursé le</th>@endif
-                <th>Notes</th>
-                <th>Enregistré par</th>
+                @if($filtre === 'remboursees')<th class="hide-mobile">Remboursé le</th>@endif
+                <th class="hide-mobile">Notes</th>
+                <th class="hide-mobile">Enregistré par</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -122,16 +122,16 @@
                 </td>
                 <td>{{ $ardoise->date_ardoise->format('d/m/Y') }}</td>
                 @if($filtre === 'remboursees')
-                <td>{{ $ardoise->date_remboursement?->format('d/m/Y') ?? '—' }}</td>
+                <td class="hide-mobile">{{ $ardoise->date_remboursement?->format('d/m/Y') ?? '—' }}</td>
                 @endif
-                <td>
+                <td class="hide-mobile">
                     @if($ardoise->notes)
                         <span class="notes-text" title="{{ $ardoise->notes }}">{{ $ardoise->notes }}</span>
                     @else
                         <span style="color:#ccc;">—</span>
                     @endif
                 </td>
-                <td style="color:#777; font-size:0.82rem;">{{ $ardoise->user->name }}</td>
+                <td class="hide-mobile" style="color:#777; font-size:0.82rem;">{{ $ardoise->user->name }}</td>
                 <td>
                     <div class="actions">
                         @if(!$ardoise->rembourse)

@@ -16,6 +16,7 @@
             crossorigin="anonymous"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; max-width: 100vw; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #333; display: flex; min-height: 100vh; }
 
         /* Sidebar */
@@ -85,14 +86,22 @@
         .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
         @media (max-width: 768px) {
+            /* Bloquer tout défilement horizontal */
+            .main-content, .content { overflow-x: hidden; max-width: 100%; }
+
             /* Grilles en colonne unique */
-            .stats-grid, .users-grid, .charts-grid, .stats-grid-3 {
+            .stats-grid, .users-grid, .charts-grid, .stats-grid-3,
+            .totaux-grid, .stats-section, .stats-mois-grid {
                 grid-template-columns: 1fr !important;
             }
 
-            /* Tableaux avec scroll horizontal */
-            .table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .table-card table { min-width: 580px; }
+            /* Tableaux : pas de scroll, on masque les colonnes */
+            .table-card { overflow: hidden; }
+            .table-card table { width: 100%; table-layout: fixed; }
+            .table-card td, .table-card th { word-break: break-word; }
+
+            /* Colonnes à masquer sur mobile */
+            .hide-mobile { display: none !important; }
 
             /* Filtres en colonne */
             .filters form { flex-direction: column; }
@@ -102,11 +111,14 @@
             /* Page actions */
             .page-actions { flex-direction: column; align-items: flex-start; }
 
-            /* Formulaires pleine largeur */
+            /* Formulaires */
             .form-card { padding: 16px; }
 
-            /* Modals */
-            .modal { padding: 20px 16px; margin: 12px; }
+            /* Modals pleine largeur */
+            .modal { padding: 20px 16px; margin: 0 12px; max-width: calc(100vw - 24px); }
+
+            /* Montants compacts */
+            .montant-depense, .montant { font-size: 0.9rem; }
         }
 
         /* Hamburger */

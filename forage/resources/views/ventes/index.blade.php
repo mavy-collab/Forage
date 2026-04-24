@@ -241,20 +241,20 @@ $pageTitle = $section ? $section['label'] : 'Toutes les ventes';
     <table>
         <thead>
             <tr>
-                <th>#</th>
+                <th class="hide-mobile">#</th>
                 <th>Date</th>
                 @if(!$typeActif)<th>Type</th>@endif
                 @if($typeActif !== 'forage')<th>Client</th>@endif
                 <th>Montant</th>
                 @if($typeActif !== 'forage')<th>Statut</th>@endif
-                <th>Enregistré par</th>
+                <th class="hide-mobile">Enregistré par</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @forelse($ventes as $vente)
             <tr>
-                <td style="color:#999; font-size:0.8rem;">#{{ $vente->id }}</td>
+                <td class="hide-mobile" style="color:#999; font-size:0.8rem;">#{{ $vente->id }}</td>
                 <td>{{ $vente->date_vente->format('d/m/Y') }}</td>
                 @if(!$typeActif)
                 <td>
@@ -285,7 +285,7 @@ $pageTitle = $section ? $section['label'] : 'Toutes les ventes';
                     @endif
                 </td>
                 @endif
-                <td style="color:#777; font-size:0.82rem;">{{ $vente->user->name }}</td>
+                <td class="hide-mobile" style="color:#777; font-size:0.82rem;">{{ $vente->user->name }}</td>
                 <td>
                     <div class="actions">
                         <a href="{{ route('ventes.show', $vente) }}" class="btn btn-outline btn-sm" title="Voir">

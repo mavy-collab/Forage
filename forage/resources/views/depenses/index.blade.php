@@ -104,24 +104,24 @@
     <table>
         <thead>
             <tr>
-                <th>#</th>
+                <th class="hide-mobile">#</th>
                 <th>Date</th>
                 <th>Motif</th>
                 <th>Montant</th>
-                <th>Enregistré par</th>
+                <th class="hide-mobile">Enregistré par</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @forelse($depenses as $depense)
             <tr>
-                <td style="color:#aaa; font-size:0.8rem;">#{{ $depense->id }}</td>
+                <td class="hide-mobile" style="color:#aaa; font-size:0.8rem;">#{{ $depense->id }}</td>
                 <td>{{ $depense->date_depense->format('d/m/Y') }}</td>
                 <td class="motif-cell">
                     <div class="motif-text">{{ $depense->motif }}</div>
                 </td>
                 <td class="montant-depense">{{ number_format($depense->montant, 0, ',', ' ') }} FCFA</td>
-                <td style="color:#777; font-size:0.82rem;">{{ $depense->user->name }}</td>
+                <td class="hide-mobile" style="color:#777; font-size:0.82rem;">{{ $depense->user->name }}</td>
                 <td>
                     <div class="actions">
                         @if(auth()->user()->isAdmin())
