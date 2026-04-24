@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hors ligne — Forage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: #fff; border-radius: 16px;
+            padding: 48px 40px; text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 400px; width: 90%;
+        }
+        .icon { font-size: 4rem; margin-bottom: 20px; }
+        h1 { color: #1a3a5c; font-size: 1.5rem; margin-bottom: 10px; }
+        p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; }
+        .badge {
+            display: inline-block;
+            background: #ffebee; color: #c62828;
+            padding: 6px 16px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 28px;
+        }
+        button {
+            background: #1a3a5c; color: #fff;
+            border: none; border-radius: 8px;
+            padding: 12px 24px; font-size: 0.9rem;
+            font-weight: 600; cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #0d2d4a; }
+        .note {
+            margin-top: 20px; font-size: 0.8rem; color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">📡</div>
+        <h1>Vous êtes hors ligne</h1>
+        <div class="badge">Pas de connexion internet</div>
+        <p>
+            Cette page n'est pas disponible en mode hors ligne.<br>
+            Les pages déjà visitées restent accessibles.
+        </p>
+        <button onclick="window.history.back()">← Retour</button>
+        <button onclick="window.location.reload()" style="margin-left:10px; background:#2e7d32;">
+            Réessayer
+        </button>
+        <p class="note">
+            Vos saisies (ventes, dépenses, ardoises) effectuées hors ligne<br>
+            seront synchronisées automatiquement dès la reconnexion.
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+    "name": "Gestion Forage",
+    "short_name": "Forage",
+    "description": "Gestion des ventes, dépenses et crédits du forage",
+    "start_url": "/dashboard",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#f0f2f5",
+    "theme_color": "#1a3a5c",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Nouvelle vente",
+            "short_name": "Vente",
+            "url": "/ventes/create"
+        },
+        {
+            "name": "Nouvelle dépense",
+            "short_name": "Dépense",
+            "url": "/depenses/create"
+        },
+        {
+            "name": "Ardoise",
+            "short_name": "Ardoise",
+            "url": "/ardoise/create"
+        }
+    ]
+}
