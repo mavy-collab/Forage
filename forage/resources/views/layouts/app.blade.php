@@ -81,6 +81,73 @@
         .alert-error { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
         .alert-warning { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
 
+        /* Tableaux responsive */
+        .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+        @media (max-width: 768px) {
+            /* Grilles en colonne unique */
+            .stats-grid, .users-grid, .charts-grid, .stats-grid-3 {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Tableaux avec scroll horizontal */
+            .table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .table-card table { min-width: 580px; }
+
+            /* Filtres en colonne */
+            .filters form { flex-direction: column; }
+            .filter-group { width: 100%; }
+            .filter-group select, .filter-group input { width: 100%; }
+
+            /* Page actions */
+            .page-actions { flex-direction: column; align-items: flex-start; }
+
+            /* Formulaires pleine largeur */
+            .form-card { padding: 16px; }
+
+            /* Modals */
+            .modal { padding: 20px 16px; margin: 12px; }
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none; background: none; border: none;
+            cursor: pointer; padding: 6px; color: #1a3a5c;
+            font-size: 1.4rem; line-height: 1;
+        }
+
+        /* Overlay mobile */
+        .sidebar-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5); z-index: 99;
+        }
+        .sidebar-overlay.open { display: block; }
+
+        /* ── Responsive mobile ── */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; align-items: center; }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.28s ease;
+                z-index: 200;
+            }
+            .sidebar.open { transform: translateX(0); box-shadow: 4px 0 20px rgba(0,0,0,0.3); }
+
+            .main-content { margin-left: 0 !important; }
+
+            .topbar { padding: 12px 16px; gap: 8px; }
+            .topbar h1 { font-size: 1rem; }
+
+            .content { padding: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .topbar h1 { font-size: 0.9rem; }
+            .conn-badge { font-size: 0.72rem; padding: 3px 8px; }
+            .badge-role { font-size: 0.72rem; padding: 3px 8px; }
+        }
+
         /* Indicateur connexion */
         .conn-badge {
             display: inline-flex; align-items: center; gap: 6px;
@@ -115,7 +182,8 @@
     @stack('styles')
 </head>
 <body>
-    <aside class="sidebar">
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
             <i class="fas fa-tint"></i>
             Forage
@@ -186,7 +254,12 @@
 
     <div class="main-content">
         <div class="topbar">
-            <h1>@yield('page-title', 'Tableau de bord')</h1>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>@yield('page-title', 'Tableau de bord')</h1>
+            </div>
             <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
                 <span id="conn-status" class="conn-badge conn-online">
                     <i class="fas fa-wifi"></i> En ligne
@@ -217,6 +290,22 @@
     <div id="offline-toast" class="offline-toast"></div>
 
     <script src="/js/offline.js"></script>
+    <script>
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('sidebarOverlay').classList.toggle('open');
+    }
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('open');
+    }
+    // Fermer la sidebar quand on clique sur un lien (mobile)
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) closeSidebar();
+        });
+    });
+    </script>
     @stack('scripts')
 </body>
 </html>

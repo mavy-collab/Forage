@@ -72,6 +72,10 @@
             padding: 12px 14px; margin-bottom: 20px;
             font-size: 0.875rem; display: flex; align-items: center; gap: 8px;
         }
+        @media (max-width: 480px) {
+            .login-container { padding: 32px 20px; border-radius: 0; min-height: 100vh; }
+            body { align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
